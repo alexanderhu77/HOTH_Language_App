@@ -1,23 +1,25 @@
-import { useState } from 'react'
-import './App.css'
-import Post from './components/post.jsx'
+import { useState } from 'react';
+import './App.css';
+import Post from './components/post.jsx';
 
 function App() {
   const [posts, setPosts] = useState([]);
   const [textInput, setTextInput] = useState('');
+  const [fileInputKey, setFileInputKey] = useState(0); // Add a key to reset file input
 
   const addPost = (event) => {
     const file = event.target.files[0];
     if (file && (file.type === "audio/mpeg" || file.type === "audio/wav")) {
       const audioURL = URL.createObjectURL(file);
       const newPost = {
-        id: posts.length,
+        id: Date.now(), // Use timestamp for a unique ID
         fileName: file.name,
         audioURL: audioURL,
         text: textInput || `This is the content of post ${posts.length + 1}`
       };
       setPosts([...posts, newPost]);
-      setTextInput(''); // Clear the text input after adding
+      setTextInput(''); // Clear text input
+      setFileInputKey(prev => prev + 1); // Reset file input by changing its key
     }
   };
 
@@ -33,17 +35,19 @@ function App() {
         />
         <label className="custom-file-upload">
           <input
+            key={fileInputKey} // Reset file input with a new key
             type="file"
             accept="audio/mpeg,audio/wav"
             onChange={addPost}
           />
-          Add Post
+          Upload Audio
         </label>
       </div>
       <div className="posts">
         {posts.map((content) => (
           <Post 
-            key={content.id}
+            key={content.id} // Use unique ID here
+           
             audioURL={content.audioURL}
             text={content.text}
           />
@@ -53,4 +57,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

@@ -1,0 +1,7 @@
+POST http://localhost:5001/api/compositions
+Content-Type: application/json
+
+{
+  "name": "Short template 1",
+  "content": "To be, or not to be."
+}
