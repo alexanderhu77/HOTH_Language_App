@@ -5,18 +5,23 @@ import './App.css'
 import Post from './components/post.jsx'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [posts, setPosts] = useState([]);
 
+  const addPost = () => {
+    setPosts([...posts, `Post ${posts.length + 1}`]);
+  }; 
   return (
-    <div className = 'App'> 
+    <div className="App"> 
       <h1>Recordings</h1>
-      <div className='posts'>
-        <Post />
+      {/* Button to add a post */}
+      <button onClick={addPost}>Add Post</button> 
+      <div className="posts">
+        {posts.map((content, index) => (
+          <Post key={index} content={content} />
+        ))}
       </div>
-
-
     </div>
-  )
+  );
 }
 
 export default App

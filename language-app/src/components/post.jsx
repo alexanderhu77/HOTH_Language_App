@@ -2,10 +2,10 @@ import './post.css'
 
 
 
-function Post(){
+function Post( {content}){
     return (
         <div className='Post'>
-            post
+             {content}
         </div>
 
 
