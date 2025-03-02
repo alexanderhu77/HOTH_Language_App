@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { getRandomComposition } from "../services/composition_services";
-import Composition from "./Composition";
+import styles from "./CompositionPage.module.css";
 
 function CompositionPage({ language }) {
   const [composition, setComposition] = useState(null);
@@ -26,14 +26,14 @@ function CompositionPage({ language }) {
         className="generate-button"
         disabled={!language}
       >
-        Generate random {language || "Text"} text
+        Generate random {language || ""} text
       </button>
 
       {error && <div className="error">Error: {error}</div>}
       {composition && (
-        <div className="composition-container">
-          <h2>{composition.name}</h2>
-          <p>{composition.content}</p>
+        <div className={styles.compositionContainer}>
+          <h2 className={styles.compositionName}>{composition.name}</h2>
+          <p className={styles.compositionContent}>{composition.content}</p>
         </div>
       )}
     </div>
