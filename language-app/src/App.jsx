@@ -4,42 +4,41 @@ import Post from './components/post.jsx';
 
 function App() {
   const [posts, setPosts] = useState([]);
-  const [textInput, setTextInput] = useState('');
-  const [fileInputKey, setFileInputKey] = useState(0); // Add a key to reset file input
+  const [language, setLanguage] = useState('');  // Store selected language
+  const [fileInputKey, setFileInputKey] = useState(0); // Reset file input
 
-  <nav>
-<div className='nav-element'>
-  websitenamehere
-</div>
-  </nav>
-  
-
+  // Function to handle adding a post
   const addPost = (event) => {
     const file = event.target.files[0];
     if (file && (file.type === "audio/mpeg" || file.type === "audio/wav")) {
       const audioURL = URL.createObjectURL(file);
       const newPost = {
-        id: Date.now(), // Use timestamp for a unique ID
+        id: Date.now(), // Unique ID using timestamp
         fileName: file.name,
         audioURL: audioURL,
-        text: textInput || `This is the content of post ${posts.length + 1}`
+        text: language || `This is the content of post ${posts.length + 1}`, // Default text
       };
       setPosts([...posts, newPost]);
-      setTextInput(''); // Clear text input
+      setLanguage('');  // Clear language dropdown
       setFileInputKey(prev => prev + 1); // Reset file input by changing its key
     }
   };
 
   return (
     <div className="App"> 
-      <h1>Recordings</h1>
+      <h1>monkeyspeak</h1>
       <div className="post-form">
-        <input
-          type="text"
-          value={textInput}
-          onChange={(e) => setTextInput(e.target.value)}
-          placeholder="What language is this in?"
-        />
+        {/* Dropdown for selecting language */}
+        <select
+          value={language}
+          onChange={(e) => setLanguage(e.target.value)} // Update language state
+        >
+          <option value="">Select a language</option>
+          <option value="English">English</option>
+          <option value="French">French</option>
+          <option value="Pidgin">Pidgin</option>
+        </select>
+
         <label className="custom-file-upload">
           <input
             key={fileInputKey} // Reset file input with a new key
@@ -53,8 +52,7 @@ function App() {
       <div className="posts">
         {posts.map((content) => (
           <Post 
-            key={content.id} // Use unique ID here
-           
+            key={content.id} // Unique ID for each post
             audioURL={content.audioURL}
             text={content.text}
           />
