@@ -2,7 +2,6 @@ import { useState } from "react";
 import "./App.css";
 import Post from "./components/post.jsx";
 import CompositionPage from "./components/CompositionPage.jsx";
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -27,7 +26,6 @@ function App() {
   };
 
   return (
-    <Router>
       <div className="App"> 
     
     <h1>monkeyspeak</h1>
@@ -63,7 +61,6 @@ function App() {
       ))}
     </div>
   </div>
-    </Router>
   );
 }
 
