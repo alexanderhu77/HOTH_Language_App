@@ -50,11 +50,20 @@ app.get("/api/compositions", (request, response) => {
     .catch((error) => next(error));
 });
 
-app.get("/api/compositions/random", (request, response) => {
-  Composition.countDocuments()
+app.get("/api/compositions/random", (request, response, next) => {
+  const language = request.query.language;
+
+  const query = language ? { language: language } : {};
+
+  Composition.countDocuments(query)
     .then((count) => {
+      if (count === 0) {
+        return response
+          .status(404)
+          .json({ error: "No compositions found for this language" });
+      }
       const random = Math.floor(Math.random() * count);
-      return Composition.findOne().skip(random);
+      return Composition.findOne(query).skip(random);
     })
     .then((composition) => {
       if (composition) {
@@ -101,6 +110,7 @@ app.post("/api/compositions", (request, response) => {
   const composition = new Composition({
     name: body.name,
     content: body.content,
+    language: body.language,
   });
 
   composition

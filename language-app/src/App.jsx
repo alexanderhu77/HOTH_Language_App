@@ -41,6 +41,7 @@ function App() {
         <option value="Pidgin">Pidgin</option>
       </select>
 
+<<<<<<< Updated upstream
       <label className="custom-file-upload">
         <input
           key={fileInputKey} // Reset file input with a new key
@@ -50,6 +51,35 @@ function App() {
         />
         Upload Audio
       </label>
+=======
+        <label className="custom-file-upload">
+          <input
+            key={fileInputKey} // Reset file input with a new key
+            type="file"
+            accept="audio/mpeg,audio/wav"
+            onChange={addPost}
+          />
+          Upload Audio
+        </label>
+      </div>
+      <div className="posts">
+        {posts.map((content) => (
+          <Post
+            key={content.id} // Unique ID for each post
+            audioURL={content.audioURL}
+            text={content.text}
+          />
+        ))}
+      </div>
+
+      <CompositionPage language={language} />
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     </div>
     <div className="posts">
       {posts.map((content) => (

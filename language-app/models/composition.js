@@ -16,6 +16,7 @@ mongoose
 const compositionSchema = new mongoose.Schema({
   name: String,
   content: String,
+  language: String,
 });
 
 compositionSchema.set("toJSON", {
