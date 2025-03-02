@@ -2,7 +2,7 @@ POST http://localhost:5001/api/compositions
 Content-Type: application/json
 
 {
-  "name": "Short template 3",
-  "content": "Привет друг мой",
-  "language": "French"
+  "name": "Short template 1",
+  "content": "When the train pulls into Euston Station, I wake with a jerk.\n\nI wake in the same way now, all these decades later, after one of my bad dreams. They always start at the same place: seeing myself as I step out onto that platform, into the freezing, clattery November air, leaving the steamy heat of the carriage behind me. My suitcase is heavy, and I stumble as I try to get a hold of it. My hands are shaking, and I can't get a grip on anything.\n\nNot the handle of my suitcase; not myself; not my own life.\n\n\"Hello, dear.\"\n\nStartled, I look up and a woman in a navy coat and sensible shoes is standing in front of me. I look around, confused. Is she speaking to me?\n\n\"My name is Majella. I'm a Sister at Maida Vale Hospital. What's your name?\"\n\nI am suspicious. Kevin has warned me to be careful in London. There are a lot of conmen around, he's told me. Later, I think how rich that is, coming from him.\n\n\"Eileen,\" I say, careful not to give her my last name, just in case there are conwomen around, too.",
+  "language": "English"
 }
