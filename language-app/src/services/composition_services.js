@@ -6,8 +6,11 @@ const getAll = () => {
   return axios.get(baseUrl).then((response) => response.data);
 };
 
-const getRandomComposition = () => {
-  return axios.get(`${baseUrl}/random`).then((response) => response.data);
+const getRandomComposition = (language) => {
+  const url = language
+    ? `${baseUrl}/random?language=${language}`
+    : `${baseUrl}/random`;
+  return axios.get(url).then((response) => response.data);
 };
 
 const addComposition = (composition) => {
