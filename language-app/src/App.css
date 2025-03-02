@@ -83,6 +83,9 @@ select {
   background: #fff;
   border-radius: 8px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  width: 80%; /* Change from fixed width to a percentage */
+  max-width: 800px; /* Allow it to grow larger */
+  margin: 10px auto; /* Center posts horizontally */
 }
 
 .Post h2 {
