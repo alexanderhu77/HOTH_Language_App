@@ -29,7 +29,7 @@ function App() {
           type="text"
           value={textInput}
           onChange={(e) => setTextInput(e.target.value)}
-          placeholder="Enter comments..."
+          placeholder="What language is this in?"
         />
         <label className="custom-file-upload">
           <input
@@ -44,7 +44,6 @@ function App() {
         {posts.map((content) => (
           <Post 
             key={content.id}
-            fileName={content.fileName}
             audioURL={content.audioURL}
             text={content.text}
           />
