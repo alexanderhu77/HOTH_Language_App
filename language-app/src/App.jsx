@@ -6,6 +6,10 @@ function App() {
   const [posts, setPosts] = useState([]);
   const [textInput, setTextInput] = useState("");
 
+  <div className="nav">
+    <p>websitenamehere</p>
+  </div>
+
   const addPost = (event) => {
     const file = event.target.files[0];
     if (file && (file.type === "audio/mpeg" || file.type === "audio/wav")) {
