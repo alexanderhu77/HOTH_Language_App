@@ -73,6 +73,9 @@ function App() {
       </div>
 
       <CompositionPage language={language} />
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     </div>
     <div className="posts">
