@@ -7,9 +7,12 @@ function App() {
   const [textInput, setTextInput] = useState('');
   const [fileInputKey, setFileInputKey] = useState(0); // Add a key to reset file input
 
-  <div className="nav">
-    <p>websitenamehere</p>
-  </div>
+  <nav>
+<div className='nav-element'>
+  websitenamehere
+</div>
+  </nav>
+  
 
   const addPost = (event) => {
     const file = event.target.files[0];

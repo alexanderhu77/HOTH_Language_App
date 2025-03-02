@@ -12,6 +12,10 @@ nav {
   color: #fcc22f;
 }
 
+.nav-element {
+  display: inline;
+}
+
 /* Style the heading */
 h1 {
   color: #333;
