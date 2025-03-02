@@ -15,13 +15,13 @@ function App() {
   // Function to handle adding a post
   const addPost = (event) => {
     const file = event.target.files[0];
-    if (file && (file.type === "audio/mpeg" || file.type === "audio/wav")) {
+    if (language && file && (file.type === "audio/mpeg" || file.type === "audio/wav")) {
       const audioURL = URL.createObjectURL(file);
       const newPost = {
         id: Date.now(), // Unique ID using timestamp
         fileName: file.name,
         audioURL: audioURL,
-        text: language || `This is the content of post ${posts.length + 1}`, // Default text
+        text: language, // Use selected language as text
       };
       setPosts([...posts, newPost]);
       setLanguage(""); // Clear language dropdown
@@ -47,8 +47,9 @@ function App() {
             type="file"
             accept="audio/mpeg,audio/wav"
             onChange={addPost}
+            disabled={!language} // Disable when no language is selected
           />
-          Upload Audio
+          <span>Upload Audio</span> {/* Wrapped in span for styling */}
         </label>
       </div>
 

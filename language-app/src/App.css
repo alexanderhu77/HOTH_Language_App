@@ -26,27 +26,48 @@ h1 {
 
 .post-form {
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+  justify-content: center;
 }
 
 select {
-  padding: 10px;
-  margin: 10px 0;
+  padding: 8px 10px; 
   border-radius: 5px;
   border: 1px solid #ccc;
   font-size: 1rem;
   width: 200px;
+  height: 36px; 
+  box-sizing: border-box; 
 }
 
 .custom-file-upload {
   display: inline-block;
-  padding: 8px 16px;
   cursor: pointer;
-  background-color: #007bff;
-  color: white;
   border-radius: 4px;
-  margin-top: 10px;
 }
 
 .custom-file-upload input[type="file"] {
   display: none;
+}
+
+.custom-file-upload span {
+  display: block;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  font-size: 1rem;
+  height: 36px;
+  line-height: 20px;
+  box-sizing: border-box;
+}
+
+/* Disabled state for the upload button */
+.custom-file-upload input[type="file"]:disabled + span {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.6;
 }
