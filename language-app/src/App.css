@@ -7,6 +7,11 @@
   min-height: 100vh;
 }
 
+/*Style the nav bar*/
+nav {
+  color: #fcc22f;
+}
+
 /* Style the heading */
 h1 {
   color: #333;

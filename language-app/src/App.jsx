@@ -7,6 +7,10 @@ function App() {
   const [textInput, setTextInput] = useState('');
   const [fileInputKey, setFileInputKey] = useState(0); // Add a key to reset file input
 
+  <div className="nav">
+    <p>websitenamehere</p>
+  </div>
+
   const addPost = (event) => {
     const file = event.target.files[0];
     if (file && (file.type === "audio/mpeg" || file.type === "audio/wav")) {
