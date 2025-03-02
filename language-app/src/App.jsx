@@ -8,8 +8,13 @@ function App() {
   const [posts, setPosts] = useState([]);
 
   const addPost = () => {
-    setPosts([...posts, `Post ${posts.length + 1}`]);
-  }; 
+    const newPost = {
+      name: `Post ${posts.length + 1}`,   // Dynamic post name
+      text: `This is the content of post ${posts.length + 1}.` // Default text
+    };
+
+    setPosts([...posts, newPost]);  // Add the new post object to the posts array
+  };
   return (
     <div className="App"> 
       <h1>Recordings</h1>

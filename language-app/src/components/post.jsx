@@ -5,7 +5,8 @@ import './post.css'
 function Post( {content}){
     return (
         <div className='Post'>
-             {content}
+             <h2>{content.name}</h2>
+             <p>{content.text}</p>
         </div>
 
 
