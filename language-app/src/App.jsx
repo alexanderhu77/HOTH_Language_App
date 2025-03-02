@@ -1,10 +1,11 @@
-import { useState } from 'react';
-import './App.css';
-import Post from './components/post.jsx';
+import { useState } from "react";
+import "./App.css";
+import Post from "./components/post.jsx";
+import CompositionPage from "./components/CompositionPage.jsx";
 
 function App() {
   const [posts, setPosts] = useState([]);
-  const [language, setLanguage] = useState('');  // Store selected language
+  const [language, setLanguage] = useState(""); // Store selected language
   const [fileInputKey, setFileInputKey] = useState(0); // Reset file input
 
   // Function to handle adding a post
@@ -19,13 +20,13 @@ function App() {
         text: language || `This is the content of post ${posts.length + 1}`, // Default text
       };
       setPosts([...posts, newPost]);
-      setLanguage('');  // Clear language dropdown
-      setFileInputKey(prev => prev + 1); // Reset file input by changing its key
+      setLanguage(""); // Clear language dropdown
+      setFileInputKey((prev) => prev + 1); // Reset file input by changing its key
     }
   };
 
   return (
-    <div className="App"> 
+    <div className="App">
       <h1>monkeyspeak</h1>
       <div className="post-form">
         {/* Dropdown for selecting language */}
@@ -51,13 +52,15 @@ function App() {
       </div>
       <div className="posts">
         {posts.map((content) => (
-          <Post 
+          <Post
             key={content.id} // Unique ID for each post
             audioURL={content.audioURL}
             text={content.text}
           />
         ))}
       </div>
+
+      <CompositionPage />
     </div>
   );
 }
