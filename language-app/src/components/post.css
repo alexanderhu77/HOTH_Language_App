@@ -1,11 +1,12 @@
+/* Style the post container */
 .Post {
     font-size: 20px;
     color: black;
     border: 1px solid black;
-    padding: 20px; 
+    padding: 20px;
     width: 100%;
     max-width: 500px;
-    margin: 10px auto; 
+    margin: 10px auto;
     background: #fff;
     border-radius: 8px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
@@ -16,6 +17,48 @@
   }
   
   .Post audio {
-    width: 100%; 
+    width: 100%;
     margin-top: 10px;
   }
+  
+  /* Style the comment section */
+  .comment-section {
+    margin-top: 20px;
+  }
+  
+  .comment-section input {
+    padding: 8px;
+    margin-right: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 75%;
+  }
+  
+  .comment-section button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .comment-section button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Style for the comment list */
+  .comments-list {
+    margin-top: 10px;
+    padding-left: 20px;
+  }
+  
+  .comment {
+    font-size: 0.9rem;
+    color: #333;
+    background: #f9f9f9;
+    padding: 8px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+  }
+  
