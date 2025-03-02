@@ -1,8 +1,10 @@
 import './post.css'
 
-function post(){
+
+
+function Post(){
     return (
-        <div className='post'>
+        <div className='Post'>
             post
         </div>
 
@@ -10,4 +12,4 @@ function post(){
     )
 }
 
-export default post;
+export default Post;
