@@ -5,42 +5,55 @@ import CompositionPage from "./components/CompositionPage.jsx";
 
 function App() {
   const [posts, setPosts] = useState([]);
-  const [textInput, setTextInput] = useState("");
+  const [language, setLanguage] = useState(""); // Store selected language
+  const [fileInputKey, setFileInputKey] = useState(0); // Reset file input
 
+  // Function to handle adding a post
   const addPost = (event) => {
     const file = event.target.files[0];
     if (file && (file.type === "audio/mpeg" || file.type === "audio/wav")) {
       const audioURL = URL.createObjectURL(file);
       const newPost = {
-        id: posts.length,
+        id: Date.now(), // Unique ID using timestamp
         fileName: file.name,
         audioURL: audioURL,
-        text: textInput || `This is the content of post ${posts.length + 1}`,
+        text: language || `This is the content of post ${posts.length + 1}`, // Default text
       };
       setPosts([...posts, newPost]);
-      setTextInput(""); // Clear the text input after adding
+      setLanguage(""); // Clear language dropdown
+      setFileInputKey((prev) => prev + 1); // Reset file input by changing its key
     }
   };
 
   return (
     <div className="App">
-      <h1>Recordings</h1>
+      <h1>monkeyspeak</h1>
       <div className="post-form">
-        <input
-          type="text"
-          value={textInput}
-          onChange={(e) => setTextInput(e.target.value)}
-          placeholder="What language is this in?"
-        />
+        {/* Dropdown for selecting language */}
+        <select
+          value={language}
+          onChange={(e) => setLanguage(e.target.value)} // Update language state
+        >
+          <option value="">Select a language</option>
+          <option value="English">English</option>
+          <option value="French">French</option>
+          <option value="Pidgin">Pidgin</option>
+        </select>
+
         <label className="custom-file-upload">
-          <input type="file" accept="audio/mpeg,audio/wav" onChange={addPost} />
-          Add Post
+          <input
+            key={fileInputKey} // Reset file input with a new key
+            type="file"
+            accept="audio/mpeg,audio/wav"
+            onChange={addPost}
+          />
+          Upload Audio
         </label>
       </div>
       <div className="posts">
         {posts.map((content) => (
           <Post
-            key={content.id}
+            key={content.id} // Unique ID for each post
             audioURL={content.audioURL}
             text={content.text}
           />
