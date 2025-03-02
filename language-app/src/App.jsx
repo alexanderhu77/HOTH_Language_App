@@ -3,6 +3,10 @@ import "./App.css";
 import Post from "./components/post.jsx";
 import CompositionPage from "./components/CompositionPage.jsx";
 
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CreatePost from "./CreatePost.jsx";
+
 function App() {
   const [posts, setPosts] = useState([]);
   const [language, setLanguage] = useState(""); // Store selected language
