@@ -1,7 +1,7 @@
 import { useState } from "react";
-import "./App.css";
-import Post from "./components/post.jsx";
-import CompositionPage from "./components/CompositionPage.jsx";
+import "../App.css";
+import Post from "../components/post.jsx";
+import CompositionPage from "../components/CompositionPage.jsx";
 
 function App() {
   const [posts, setPosts] = useState([]);
