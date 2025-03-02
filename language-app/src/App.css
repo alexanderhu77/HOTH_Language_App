@@ -7,7 +7,7 @@
   min-height: 100vh;
 }
 
-/*Style the nav bar*/
+/* Style the nav bar */
 nav {
   color: #fcc22f;
 }
@@ -41,6 +41,17 @@ h1 {
   margin-bottom: 20px;
 }
 
+/* Style the language select dropdown */
+select {
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  width: 200px;
+}
+
+/* Style the input field for text */
 .post-form input[type="text"] {
   padding: 8px;
   margin-right: 10px;
@@ -49,6 +60,7 @@ h1 {
   width: 200px;
 }
 
+/* Style the file upload button */
 .custom-file-upload {
   display: inline-block;
   padding: 8px 16px;
@@ -56,8 +68,24 @@ h1 {
   background-color: #007bff;
   color: white;
   border-radius: 4px;
+  margin-top: 10px;
 }
 
+/* Hide the default file input */
 .custom-file-upload input[type="file"] {
   display: none;
 }
+
+/* Style posts (audio + text content) */
+.Post {
+  padding: 20px;
+  margin: 10px 0;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.Post h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color
