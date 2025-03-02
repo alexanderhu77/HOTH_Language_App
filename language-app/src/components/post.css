@@ -2,11 +2,20 @@
     font-size: 20px;
     color: black;
     border: 1px solid black;
-    padding: 10px;
-    width: fit-content;
-    margin: 0 auto;
-}
-
-.Post p {
+    padding: 20px; 
+    width: 100%;
+    max-width: 500px;
+    margin: 10px auto; 
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .Post p {
     margin: 5px 0;
-}
+  }
+  
+  .Post audio {
+    width: 100%; 
+    margin-top: 10px;
+  }
