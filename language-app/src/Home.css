@@ -19,6 +19,7 @@ h1 {
   width: 100px;
   border-radius: 50%;
   font-size: xx-large;
+  border-color: red;
 }
 
 .posts {
