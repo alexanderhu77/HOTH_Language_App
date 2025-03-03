@@ -12,6 +12,15 @@ h1 {
   margin-bottom: 20px;
 }
 
+#add-post-button{
+  background-color:rgb(197, 131, 18);
+  display:block;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  font-size: xx-large;
+}
+
 .posts {
   display: flex;
   flex-direction: column;

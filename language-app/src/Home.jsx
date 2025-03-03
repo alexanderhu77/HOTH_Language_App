@@ -28,7 +28,7 @@ function Home() {
   return (
     <div className="App">
       <h1>monkeyspeak</h1>
-      <a href="/create-post">click hereeeee</a>
+      <a href="/create-post"><button id="add-post-button">+</button></a>
       <div className="post-form">
         {/* Dropdown for selecting language */}
         <select value={language} onChange={(e) => setLanguage(e.target.value)}>
