@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./CreatePost.css";
 import Post from "./components/post.jsx";
 import CompositionPage from "./components/CompositionPage.jsx";
-
+import './Home.css';
 function CreatePost() {
   const [posts, setPosts] = useState([]);
   const [language, setLanguage] = useState(""); // Store selected language
@@ -32,6 +32,9 @@ function CreatePost() {
   return (
     <div className="create-post-container">
       <div className="post-form">
+        <a href="/">
+            <button id="back-button">←</button>
+        </a>
         {/* Dropdown for selecting language */}
         <select value={language} onChange={(e) => setLanguage(e.target.value)}>
           <option value="">Select a language</option>
@@ -66,6 +69,7 @@ function CreatePost() {
         </div>
       </div>
     </div>
+    
   );
 }
 
