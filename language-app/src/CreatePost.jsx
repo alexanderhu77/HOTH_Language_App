@@ -3,3 +3,5 @@ function CreatePost() {
 <h1>bro we creating posts and shit</h1>
     );
 }
+
+export default CreatePost;
