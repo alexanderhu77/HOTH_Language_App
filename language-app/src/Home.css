@@ -23,6 +23,18 @@ h1 {
   right: 50px;
 }
 
+#back-button {
+  background-color: rgb(197, 131, 18);
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  font-size: xx-large;
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+}
+
+
 .posts {
   display: flex;
   flex-direction: column;
