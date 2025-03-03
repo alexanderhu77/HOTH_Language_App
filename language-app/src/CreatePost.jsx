@@ -30,7 +30,7 @@ function CreatePost() {
   };
 
   return (
-    <div>
+    <div className="create-post-container">
       <div className="post-form">
         {/* Dropdown for selecting language */}
         <select value={language} onChange={(e) => setLanguage(e.target.value)}>
