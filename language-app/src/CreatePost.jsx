@@ -30,7 +30,7 @@ function CreatePost() {
   };
 
   return (
-    <div>
+    <div className="create-post-container">
       <div className="post-form">
         <a href="/">
             <button id="back-button">←</button>
