@@ -21,12 +21,12 @@
   height: 55px; /* account for distortion*/
   width: 50px;
   border-radius: 50%;
-  font-size: x-large; 
+  font-size: x-large;
   position: fixed;
   top: 20px;
   left: 20px;
-  display: flex; 
-  align-items: center; 
+  display: flex;
+  align-items: center;
   justify-content: center;
 }
 
@@ -89,4 +89,45 @@ select {
   background-color: #ccc;
   cursor: not-allowed;
   opacity: 0.6;
+}
+
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.post-card {
+  aspect-ratio: 1;
+  background: rgb(197, 131, 18);
+  border-radius: 10px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post-card:hover {
+  transform: translateY(-5px);
+}
+
+.post-card h3 {
+  margin: 0 0 10px 0;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.post-card p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
 }

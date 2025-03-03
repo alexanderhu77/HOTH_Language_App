@@ -1,17 +1,29 @@
-import { useState } from 'react';
-import './post.css';
+import { useState, useEffect } from "react";
+import { addComment } from "../services/post_services";
+import "./post.css";
 
-function Post({ fileName, audioURL, text }) {
-  const [comment, setComment] = useState('');
+function Post({ id, fileName, audioURL, text }) {
+  const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
 
-  // Handle comment submission
-  const handleCommentSubmit = () => {
+  const handleCommentSubmit = async () => {
     if (comment) {
-      setComments([...comments, comment]);
-      setComment(''); // Clear the input field after comment is added
+      try {
+        const updatedPost = await addComment(id, comment);
+        setComments(updatedPost.comments);
+        setComment(""); // Clear the input field
+      } catch (error) {
+        console.error("Error adding comment:", error);
+      }
     }
   };
+
+  useEffect(() => {
+    // Initialize comments from props if available
+    if (comments) {
+      setComments(comments);
+    }
+  }, []);
 
   return (
     <div className="Post">
@@ -22,7 +34,6 @@ function Post({ fileName, audioURL, text }) {
         Your browser does not support the audio element.
       </audio>
 
-      {/* Comment Input and Button */}
       <div className="comment-section">
         <input
           type="text"
@@ -33,10 +44,11 @@ function Post({ fileName, audioURL, text }) {
         <button onClick={handleCommentSubmit}>Post Comment</button>
       </div>
 
-      {/* Display Comments */}
       <div className="comments-list">
         {comments.map((com, index) => (
-          <p key={index} className="comment">{com}</p>
+          <p key={index} className="comment">
+            {com.content}
+          </p>
         ))}
       </div>
     </div>

@@ -5,7 +5,23 @@ const cors = require("cors");
 const path = require("path");
 const app = express();
 
+const mongoose = require("mongoose");
+
+mongoose.set("strictQuery", false);
+
+const url = process.env.MONGODB_URI;
+
+mongoose
+  .connect(url)
+  .then((result) => {
+    console.log("Connected to MongoDB");
+  })
+  .catch((error) => {
+    console.log("Error connecting to MongoDB:", error.message);
+  });
+
 const Composition = require("./models/composition");
+const Post = require("./models/post");
 
 const unknownEndpoint = (request, response) => {
   response.status(404).send({ error: "unknown endpoint" });
@@ -136,6 +152,86 @@ app.put("/api/compositions/:id", (request, response) => {
     .then((composition) => {
       if (composition) return response.json(composition);
       else response.status(404).end();
+    })
+    .catch((error) => next(error));
+});
+
+//user posts
+// GET all posts
+app.get("/api/posts", (request, response, next) => {
+  Post.find({})
+    .then((posts) => {
+      response.json(posts);
+    })
+    .catch((error) => next(error));
+});
+
+// GET single post
+app.get("/api/posts/:id", (request, response, next) => {
+  Post.findById(request.params.id)
+    .then((post) => {
+      if (post) {
+        response.json(post);
+      } else {
+        response.status(404).end();
+      }
+    })
+    .catch((error) => next(error));
+});
+
+// POST new post
+app.post("/api/posts", (request, response, next) => {
+  const body = request.body;
+
+  if (!body.fileName || !body.audioURL || !body.language) {
+    return response.status(400).json({
+      error: "content missing",
+    });
+  }
+
+  const post = new Post({
+    fileName: body.fileName,
+    audioURL: body.audioURL,
+    text: body.text || "",
+    language: body.language,
+    comments: [],
+    createdAt: new Date(),
+  });
+
+  post
+    .save()
+    .then((savedPost) => {
+      response.status(201).json(savedPost);
+    })
+    .catch((error) => next(error));
+});
+
+// POST comment to a post
+app.post("/api/posts/:id/comments", (request, response, next) => {
+  const body = request.body;
+
+  if (!body.content) {
+    return response.status(400).json({
+      error: "comment content missing",
+    });
+  }
+
+  const comment = {
+    content: body.content,
+    createdAt: new Date(),
+  };
+
+  Post.findByIdAndUpdate(
+    request.params.id,
+    { $push: { comments: comment } },
+    { new: true }
+  )
+    .then((updatedPost) => {
+      if (updatedPost) {
+        response.status(201).json(updatedPost);
+      } else {
+        response.status(404).end();
+      }
     })
     .catch((error) => next(error));
 });
