@@ -45,7 +45,7 @@ function CreatePost() {
         <select value={language} onChange={(e) => setLanguage(e.target.value)}>
           <option value="">Select a language</option>
           <option value="English">English</option>
-          <option value="French">French</option>
+          <option value="Russian">Russian</option>
           <option value="Pidgin">Pidgin</option>
         </select>
 
