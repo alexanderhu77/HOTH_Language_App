@@ -12,3 +12,6 @@ Using the webapp
 3. Select language, generate a speech with the random generator, and record yourself speaking
 4. Upload the audio file, and let native speakers listen to you
 5. Comments will be shown under your post to help you achieve your language learning goals. 
+
+This project was created on March 2nd 2025 9 A.M. PST to March 2nd 2025 9 P.M. PST.
+Video demo: https://www.youtube.com/watch?v=X7mfwIbzDBI
