@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./CreatePost.css";
 import Post from "./components/post.jsx";
 import CompositionPage from "./components/CompositionPage.jsx";
-import './Home.css';
+
 function CreatePost() {
   const [posts, setPosts] = useState([]);
   const [language, setLanguage] = useState(""); // Store selected language
