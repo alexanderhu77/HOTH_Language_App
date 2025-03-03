@@ -60,7 +60,11 @@ function CreatePost() {
           />
         ))}
       </div>
-      <CompositionPage language={language} />{" "}
+      <div className="composition-container">
+        <div className="composition">
+          <CompositionPage language={language} />
+        </div>
+      </div>
     </div>
   );
 }

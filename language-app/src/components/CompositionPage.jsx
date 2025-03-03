@@ -21,13 +21,15 @@ function CompositionPage({ language }) {
     <div>
       <h1>Welcome! Click the button to get a random text!</h1>
 
-      <button
-        onClick={handleGenerateComposition}
-        className="generate-button"
-        disabled={!language}
-      >
-        Generate random {language || ""} text
-      </button>
+      <div className={styles.buttonContainer}>
+        <button
+          onClick={handleGenerateComposition}
+          className={styles.generateButton}
+          disabled={!language}
+        >
+          Generate random {language || ""} text
+        </button>
+      </div>
 
       {error && <div className="error">Error: {error}</div>}
       {composition && (

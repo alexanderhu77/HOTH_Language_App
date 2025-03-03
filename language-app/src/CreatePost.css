@@ -1,3 +1,7 @@
+body {
+  background-color: #f1c753;
+}
+
 .posts {
   display: flex;
   flex-direction: column;
@@ -33,6 +37,22 @@ select {
   width: 200px;
   height: 36px;
   box-sizing: border-box;
+}
+
+.composition-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 20px auto;
+  max-width: 800px;
+}
+
+.composition {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .custom-file-upload {
