@@ -3,6 +3,8 @@ const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
 const path = require("path");
+const multer = require("multer");
+const fs = require("fs");
 const app = express();
 
 const mongoose = require("mongoose");
@@ -28,13 +30,17 @@ const unknownEndpoint = (request, response) => {
 };
 
 const errorHandler = (error, request, response, next) => {
-  console.error(error.message);
+  console.error("Error:", error.message);
 
   if (error.name === "CastError") {
     return response.status(400).send({ error: "malformatted id" });
+  } else if (error.name === "ValidationError") {
+    return response.status(400).json({ error: error.message });
+  } else if (error.name === "MulterError") {
+    return response.status(400).json({ error: "File upload error" });
   }
 
-  next(error);
+  response.status(500).json({ error: "Internal server error" });
 };
 
 app.use(express.static("dist"));
@@ -55,6 +61,34 @@ app.use(express.json()); //used to parse recieved JSON
 
 app.use(requestLogger);
 app.use(morgan("tiny"));
+
+// Create uploads directory if it doesn't exist
+const uploadsDir = path.join(__dirname, "uploads");
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir);
+}
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, uploadsDir);
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + path.extname(file.originalname));
+  },
+});
+
+const upload = multer({
+  storage: storage,
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype === "audio/mpeg" || file.mimetype === "audio/wav") {
+      cb(null, true);
+    } else {
+      cb(new Error("Invalid file type"), false);
+    }
+  },
+});
+
+app.use("/uploads", express.static("uploads"));
 
 let compositions = [];
 
@@ -180,28 +214,49 @@ app.get("/api/posts/:id", (request, response, next) => {
 });
 
 // POST new post
-app.post("/api/posts", (request, response, next) => {
-  const body = request.body;
+app.post("/api/posts", upload.single("audio"), (request, response, next) => {
+  try {
+    const body = request.body;
+    const file = request.file;
 
-  if (!body.fileName || !body.audioURL || !body.language) {
-    return response.status(400).json({
-      error: "content missing",
+    if (!file || !body.language) {
+      return response.status(400).json({
+        error: "Missing file or language",
+      });
+    }
+
+    const post = new Post({
+      fileName: file.originalname,
+      audioURL: `/uploads/${file.filename}`,
+      text: body.text || "",
+      language: body.language,
+      comments: [],
+      createdAt: new Date(),
     });
+
+    post
+      .save()
+      .then((savedPost) => {
+        response.status(201).json(savedPost);
+      })
+      .catch((error) => next(error));
+  } catch (error) {
+    next(error);
   }
+});
 
-  const post = new Post({
-    fileName: body.fileName,
-    audioURL: body.audioURL,
-    text: body.text || "",
-    language: body.language,
-    comments: [],
-    createdAt: new Date(),
-  });
-
-  post
-    .save()
-    .then((savedPost) => {
-      response.status(201).json(savedPost);
+// GET single post
+app.get("/api/posts/:id", (request, response, next) => {
+  Post.findById(request.params.id)
+    .then((post) => {
+      if (post) {
+        response.json({
+          ...post.toJSON(),
+          comments: post.comments || [], // Ensure comments are included
+        });
+      } else {
+        response.status(404).end();
+      }
     })
     .catch((error) => next(error));
 });

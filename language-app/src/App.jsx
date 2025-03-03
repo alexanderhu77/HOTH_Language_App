@@ -1,16 +1,17 @@
-import Home from "./Home.jsx"
-import CreatePost from "./CreatePost.jsx";
-
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./Home";
+import CreatePost from "./CreatePost";
+import ViewPost from "./ViewPost";
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
-        <Route path="/" element={<Home />}/>
+        <Route path="/" element={<Home />} />
         <Route path="/create-post" element={<CreatePost />} />
+        <Route path="/post/:id" element={<ViewPost />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
 

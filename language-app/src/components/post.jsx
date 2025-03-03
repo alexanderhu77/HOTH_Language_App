@@ -2,9 +2,22 @@ import { useState, useEffect } from "react";
 import { addComment } from "../services/post_services";
 import "./post.css";
 
-function Post({ id, fileName, audioURL, text }) {
+function Post({
+  id,
+  fileName,
+  audioURL,
+  text,
+  comments: initialComments = [],
+}) {
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
+
+  // Only set comments once when component mounts or when initialComments changes
+  useEffect(() => {
+    if (initialComments && initialComments.length > 0) {
+      setComments(initialComments);
+    }
+  }, []);
 
   const handleCommentSubmit = async () => {
     if (comment) {
@@ -17,13 +30,6 @@ function Post({ id, fileName, audioURL, text }) {
       }
     }
   };
-
-  useEffect(() => {
-    // Initialize comments from props if available
-    if (comments) {
-      setComments(comments);
-    }
-  }, []);
 
   return (
     <div className="Post">

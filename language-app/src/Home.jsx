@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { getAllPosts } from "./services/post_services";
+import { Link } from "react-router-dom";
 import "./Home.css";
 
 function Home() {
@@ -21,16 +22,18 @@ function Home() {
 
       <div className="posts-grid">
         {posts.map((post) => (
-          <div key={post.id} className="post-card">
-            <h3>{post.fileName}</h3>
-            <p>{post.language}</p>
-          </div>
+          <Link to={`/post/${post.id}`} key={post.id} className="post-link">
+            <div className="post-card">
+              <h3>{post.fileName}</h3>
+              <p>{post.language}</p>
+            </div>
+          </Link>
         ))}
       </div>
 
-      <a href="/create-post">
+      <Link to="/create-post">
         <button id="add-post-button">+</button>
-      </a>
+      </Link>
     </div>
   );
 }

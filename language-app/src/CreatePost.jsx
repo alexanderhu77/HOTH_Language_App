@@ -1,27 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./CreatePost.css";
-import Post from "./components/post.jsx";
+import { createPost } from "./services/post_services";
 import CompositionPage from "./components/CompositionPage.jsx";
-import { createPost, getAllPosts } from "./services/post_services";
 import "./Home.css";
+import Post from "./components/post.jsx";
 
 function CreatePost() {
-  const [posts, setPosts] = useState([]);
   const [language, setLanguage] = useState("");
   const [fileInputKey, setFileInputKey] = useState(0);
   const [error, setError] = useState(null);
-
-  // Fetch posts on component mount
-  useEffect(() => {
-    getAllPosts()
-      .then((initialPosts) => {
-        setPosts(initialPosts);
-      })
-      .catch((error) => {
-        console.error("Error fetching posts:", error);
-        setError("Failed to load posts");
-      });
-  }, []);
+  const [currentPost, setCurrentPost] = useState(null);
 
   const addPost = async (event) => {
     const file = event.target.files[0];
@@ -31,18 +19,15 @@ function CreatePost() {
       (file.type === "audio/mpeg" || file.type === "audio/wav")
     ) {
       try {
-        const audioURL = URL.createObjectURL(file);
-        const newPost = {
-          fileName: file.name,
-          audioURL: audioURL,
-          text: language,
-          language: language,
-        };
+        const formData = new FormData();
+        formData.append("audio", file);
+        formData.append("language", language);
+        formData.append("text", language);
 
-        const savedPost = await createPost(newPost);
-        setPosts((prevPosts) => [...prevPosts, savedPost]);
-        setLanguage(""); // Clear language dropdown
-        setFileInputKey((prev) => prev + 1); // Reset file input
+        const savedPost = await createPost(formData);
+        setCurrentPost(savedPost);
+        setLanguage("");
+        setFileInputKey((prev) => prev + 1);
       } catch (error) {
         console.error("Error creating post:", error);
         setError("Failed to create post");
@@ -76,24 +61,22 @@ function CreatePost() {
         </label>
       </div>
 
-      <div className="posts">
-        {posts.map((post) => (
-          <Post
-            key={post.id}
-            id={post.id}
-            fileName={post.fileName}
-            audioURL={post.audioURL}
-            text={post.text}
-            comments={post.comments}
-          />
-        ))}
-      </div>
-
       <div className="composition-container">
         <div className="composition">
           <CompositionPage language={language} />
         </div>
       </div>
+
+      {currentPost && (
+        <div className="current-post">
+          <Post
+            id={currentPost.id}
+            fileName={currentPost.fileName}
+            audioURL={currentPost.audioURL}
+            text={currentPost.text}
+          />
+        </div>
+      )}
     </div>
   );
 }

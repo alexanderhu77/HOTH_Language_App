@@ -19,7 +19,9 @@ function CompositionPage({ language }) {
 
   return (
     <div>
-      <h1>Welcome! Click the button to get a random text!</h1>
+      <h1 style={{ textAlign: "center", marginBottom: "2rem" }}>
+        Welcome! Select a language and click the button to get a random text!
+      </h1>
 
       <div className={styles.buttonContainer}>
         <button
