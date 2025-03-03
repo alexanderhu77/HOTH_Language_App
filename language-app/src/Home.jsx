@@ -18,7 +18,7 @@ function Home() {
 
   return (
     <div className="App">
-      <h1>monkeyspeak</h1>
+      <h1 id="website-name">monkeyspeak</h1>
 
       <div className="posts-grid">
         {posts.map((post) => (

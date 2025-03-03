@@ -6,6 +6,10 @@
   min-height: 100vh;
 }
 
+#website-name {
+  color: rgb(93, 52, 27);
+}
+
 #add-post-button {
   background-color: rgb(197, 131, 18);
   height: 100px;
