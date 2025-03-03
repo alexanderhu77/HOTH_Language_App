@@ -1,22 +1,3 @@
-.App {
-  text-align: center;
-  font-family: Arial, sans-serif;
-  padding: 20px;
-  background-color: #f1c753;
-  min-height: 100vh;
-}
-
-#add-post-button {
-  background-color: rgb(197, 131, 18);
-  height: 100px;
-  width: 100px;
-  border-radius: 50%;
-  font-size: xx-large;
-  position: fixed;
-  bottom: 50px;
-  right: 50px;
-}
-
 .posts {
   display: flex;
   flex-direction: column;
@@ -27,6 +8,12 @@
   background: rgb(197, 131, 18);
   border-radius: 10px;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: #333;
+  font-size: 2rem;
+  margin-bottom: 20px;
 }
 
 .post-form {
